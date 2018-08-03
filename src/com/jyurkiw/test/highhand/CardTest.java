@@ -65,4 +65,18 @@ class CardTest {
 
         assertEquals(0, actualIndex);
     }
+
+    @Test
+    void getJokerValue() {
+        int actualIndex = Card.getCardValueIndex("JOKER");
+
+        assertEquals(0, actualIndex);
+    }
+
+    @Test
+    void getJokerSuit() {
+        String actualSuit = Card.getCardSuit("JOKER");
+
+        assertEquals("JOKER", actualSuit);
+    }
 }

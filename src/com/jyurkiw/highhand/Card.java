@@ -8,11 +8,12 @@ public class Card implements Comparable<Card> {
             "H",
             "S",
             "C",
-            "D"
+            "D",
+            "JOKER"
     };
 
     public static final String[] CARD_VALUE = {
-            "A",
+            "JOKER",
             "2",
             "3",
             "4",
@@ -24,7 +25,8 @@ public class Card implements Comparable<Card> {
             "10",
             "J",
             "Q",
-            "K"
+            "K",
+            "A"
     };
 
     /**
@@ -34,7 +36,10 @@ public class Card implements Comparable<Card> {
      * @return The numerical value of the code (ex: 10H = 10, AS = A)
      */
     public static String getCardValue(String cardCode) {
-         return cardCode.substring(0, cardCode.length() - 1);
+        if (cardCode.equalsIgnoreCase("JOKER")) {
+            return cardCode;
+        }
+        return cardCode.substring(0, cardCode.length() - 1);
     }
 
     /**
@@ -61,6 +66,9 @@ public class Card implements Comparable<Card> {
      * @return The suit of the code (ex: 10H = H, AS = S)
      */
     public static String getCardSuit(String cardCode) {
+        if (cardCode.equalsIgnoreCase("JOKER")) {
+            return cardCode;
+        }
         return "" + cardCode.charAt(cardCode.length() - 1);
     }
 
@@ -110,6 +118,10 @@ public class Card implements Comparable<Card> {
     public Card(String cardCode) {
         ValueIndex = Card.getCardValueIndex(cardCode);
         SuitIndex = Card.getCardSuitIndex(cardCode);
+    }
+
+    public boolean isJoker() {
+        return ValueIndex == 0 && SuitIndex == 4;
     }
 
     @Override
