@@ -79,4 +79,89 @@ class CardTest {
 
         assertEquals("JOKER", actualSuit);
     }
+
+    // Joker tests
+    @Test
+    void isJoker() {
+        Card joker = new Card("JOKER");
+
+        assertTrue(joker.isJoker());
+    }
+
+    @Test
+    void setJokerToCardSuit() {
+        Card joker = new Card("JOKER");
+        joker.setJoker("3H");
+
+        assertEquals(0, joker.SuitIndex);
+    }
+
+    @Test
+    void setJokerToCardValue() {
+        Card joker = new Card("JOKER");
+        joker.setJoker("3H");
+
+        assertEquals(2, joker.ValueIndex);
+    }
+
+    @Test
+    void setJokerToCardIsJoker() {
+        Card joker = new Card("JOKER");
+        joker.setJoker("3H");
+
+        assertTrue(joker.isJoker());
+    }
+
+    @Test
+    void resetJokerValue() {
+        Card joker = new Card("JOKER");
+        joker.setJoker("3H");
+        joker.resetJoker();
+
+        assertEquals(0, joker.ValueIndex);
+    }
+
+    @Test
+    void resetJokerSuit() {
+        Card joker = new Card("JOKER");
+        joker.setJoker("3H");
+        joker.resetJoker();
+
+        assertEquals(4, joker.SuitIndex);
+    }
+
+    @Test
+    void compareToJokerUnset() {
+        Card joker = new Card("JOKER");
+        Card ts = new Card("3S");
+
+        assertEquals(-1, joker.compareTo(ts));
+    }
+
+    @Test
+    void compareToJokerSetSame() {
+        Card joker = new Card("JOKER");
+        Card ts = new Card("3S");
+        joker.setJoker("3S");
+
+        assertEquals(0, joker.compareTo(ts));
+    }
+
+    @Test
+    void compareToJokerSetHigh() {
+        Card joker = new Card("JOKER");
+        Card ts = new Card("3S");
+        joker.setJoker("5S");
+
+        assertEquals(1, joker.compareTo(ts));
+    }
+
+    @Test
+    void compareToJokerSetLow() {
+        Card joker = new Card("JOKER");
+        Card ts = new Card("3S");
+        joker.setJoker("2S");
+
+        assertEquals(-1, joker.compareTo(ts));
+    }
 }

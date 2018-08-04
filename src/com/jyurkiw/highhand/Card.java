@@ -4,7 +4,7 @@ package com.jyurkiw.highhand;
  * Represents a single Card in a standard deck (not counting the Joker).
  */
 public class Card implements Comparable<Card> {
-    public static final String[] CARD_SUIT = {
+    private static final String[] CARD_SUIT = {
             "H",
             "S",
             "C",
@@ -12,7 +12,7 @@ public class Card implements Comparable<Card> {
             "JOKER"
     };
 
-    public static final String[] CARD_VALUE = {
+    private static final String[] CARD_VALUE = {
             "JOKER",
             "2",
             "3",
@@ -28,6 +28,10 @@ public class Card implements Comparable<Card> {
             "K",
             "A"
     };
+
+    public static final int ACE_IDX = 13;
+    public static final int JOKER_IDX = 0;
+    public static final int JOKER_SUIT = 4;
 
     /**
      * Return value from the passed card code.
@@ -99,6 +103,9 @@ public class Card implements Comparable<Card> {
      */
     public int SuitIndex;
 
+    private boolean _isJoker = false;
+    private boolean _isAssignedJoker = false;
+
     /**
      * Construct a Card with the passed value and suit indexes.
      *
@@ -108,6 +115,8 @@ public class Card implements Comparable<Card> {
     public Card(int valueIndex, int suitIndex) {
         ValueIndex = valueIndex;
         SuitIndex = suitIndex;
+
+        _isJoker = ValueIndex == JOKER_IDX && SuitIndex == JOKER_SUIT;
     }
 
     /**
@@ -118,19 +127,86 @@ public class Card implements Comparable<Card> {
     public Card(String cardCode) {
         ValueIndex = Card.getCardValueIndex(cardCode);
         SuitIndex = Card.getCardSuitIndex(cardCode);
+
+        _isJoker = cardCode.equalsIgnoreCase("JOKER");
     }
 
+    /**
+     * Return true if this card is a joker.
+     *
+     * @return true if this card is a joker.
+     */
     public boolean isJoker() {
-        return ValueIndex == 0 && SuitIndex == 4;
+        return _isJoker;
+    }
+
+    /**
+     * Set the value of this joker to another card value.
+     * @param cardCode The card to set this joker to.
+     */
+    public void setJoker(String cardCode) {
+        if (isJoker()) {
+            ValueIndex = Card.getCardValueIndex(cardCode);
+            SuitIndex = Card.getCardSuitIndex(cardCode);
+
+            _isAssignedJoker = true;
+        }
+    }
+
+    /**
+     * Set the value of this joker to another card value.
+     *
+     * @param valueIndex The card value index.
+     * @param suitIndex The card suit index.
+     */
+    public void setJoker(int valueIndex, int suitIndex) {
+        if (isJoker()) {
+            ValueIndex = valueIndex;
+            SuitIndex = suitIndex;
+
+            _isAssignedJoker = true;
+        }
+    }
+
+    /**
+     * Returns true if this card is an assigned joker.
+     *
+     * @return true if this card is an assigned joker.
+     */
+    public boolean isAssignedJoker() {
+        return _isAssignedJoker;
+    }
+
+    /**
+     * Reset this joker to a joker's value.
+     */
+    public void resetJoker() {
+        if (_isJoker) {
+            ValueIndex = 0;
+            SuitIndex = 4;
+
+            _isAssignedJoker = false;
+        }
     }
 
     @Override
     public int compareTo(Card o) {
-        return ValueIndex - o.ValueIndex;
+        int compValue =  ValueIndex - o.ValueIndex;
+        if (compValue > 0) {
+            return 1;
+        } else if (compValue < 0) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public String toString() {
-        return Card.CARD_VALUE[ValueIndex] + Card.CARD_SUIT[SuitIndex];
+        if (isJoker()) {
+            return "JOKER(" + Card.CARD_VALUE[ValueIndex] + Card.CARD_SUIT[SuitIndex] + ")";
+        } else {
+            return Card.CARD_VALUE[ValueIndex] + Card.CARD_SUIT[SuitIndex];
+        }
     }
 }
