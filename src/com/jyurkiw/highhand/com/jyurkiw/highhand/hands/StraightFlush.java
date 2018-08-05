@@ -12,7 +12,7 @@ public class StraightFlush extends Hand {
     /**
      * Construct a Straight Flush with the given handCode.
      * Hand must be checked by isValid to detect if it is actually
-     * a five of a kind.
+     * a Straight Flush.
      *
      * @param handCode
      */
@@ -32,6 +32,12 @@ public class StraightFlush extends Hand {
         return cards.get(0).compareTo(o.getHighCard());
     }
 
+    /**
+     * Return true if the hand is a valid Straight Flush.
+     * Straight Flush can be completed with a Joker.
+     *
+     * @return True if the hand is a valid Straight Flush and false otherwise.
+     */
     @Override
     public boolean isValid() {
         int highCardValue = getHighCard().ValueIndex;

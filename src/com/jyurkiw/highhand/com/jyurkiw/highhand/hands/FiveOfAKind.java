@@ -31,6 +31,7 @@ public class FiveOfAKind extends Hand {
 
     /**
      * Returns true if this hand is a valid five of a kind hand and false if it is not.
+     * Five of a kind requires a joker.
      *
      * @return true if valid Five of a Kind.
      */
