@@ -74,7 +74,7 @@ class StraightFlushTest {
     void isValidChangesJokerHighCardIsCard() {
         StraightFlush sf = new StraightFlush("3D:4D:5D:6D:JOKER");
         sf.isValid();
-        assertEquals(new Card("7D"), sf.cards.get(0));
+        assertEquals(new Card("7D").ValueIndex, sf.cards.get(0).ValueIndex);
     }
 
     @Test
@@ -95,7 +95,7 @@ class StraightFlushTest {
     void isValidChangesJokerLowCardCard() {
         StraightFlush sf = new StraightFlush("JOKER:3D:4D:5D:6D");
         sf.isValid();
-        assertEquals(new Card("7D"), sf.cards.get(0));
+        assertEquals(new Card("7D").ValueIndex, sf.cards.get(0).ValueIndex);
     }
 
     @Test
@@ -118,7 +118,7 @@ class StraightFlushTest {
         StraightFlush sf = new StraightFlush("JOKER:3D:4D:6D:7D");
         sf.isValid();
 
-        assertEquals(new Card("5D"), sf.cards.get(2));
+        assertEquals(new Card("5D").ValueIndex, sf.cards.get(2).ValueIndex);
     }
 
     @Test
@@ -133,7 +133,7 @@ class StraightFlushTest {
         StraightFlush sf = new StraightFlush("3D:4D:5D:8D:JOKER");
         sf.isValid();
 
-        assertTrue(sf.cards.get(1).isJoker());
+        assertTrue(sf.cards.get(4).isJoker());
     }
 
     @Test
@@ -141,7 +141,7 @@ class StraightFlushTest {
         StraightFlush sf = new StraightFlush("3D:4D:5D:8D:JOKER");
         sf.isValid();
 
-        assertEquals(new Card("7D"), sf.cards.get(1));
+        assertEquals(new Card("JOKER").ValueIndex, sf.cards.get(4).ValueIndex);
     }
 
     @Test
@@ -169,9 +169,9 @@ class StraightFlushTest {
     @Test
     void compareToGreaterThanWithJoker() {
         StraightFlush lt = new StraightFlush("2D:3D:4D:5D:6D");
-        StraightFlush gt = new StraightFlush("JOKER:2S:3S:4S:5S");
+        StraightFlush gt = new StraightFlush("JOKER:3S:4S:5S:6S");
 
-        assertEquals(1, gt.compareTo(lt));
+        assertEquals(0, gt.compareTo(lt));
     }
 
     @Test
@@ -194,6 +194,8 @@ class StraightFlushTest {
     void compareToEqualToWithJoker() {
         StraightFlush sf1 = new StraightFlush("JOKER:3D:4D:5D:6D");
         StraightFlush sf2 = new StraightFlush("3S:4S:5S:6S:7S");
+
+        sf1.isValid();
 
         assertEquals(0, sf1.compareTo(sf2));
     }

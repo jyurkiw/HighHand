@@ -10,7 +10,9 @@ import com.jyurkiw.highhand.Hand;
 public class StraightFlush extends Hand {
 
     /**
-     *
+     * Construct a Straight Flush with the given handCode.
+     * Hand must be checked by isValid to detect if it is actually
+     * a five of a kind.
      *
      * @param handCode
      */
@@ -35,7 +37,6 @@ public class StraightFlush extends Hand {
         int highCardValue = getHighCard().ValueIndex;
         int cardSuit = getHighCard().SuitIndex;
 
-        boolean jokerAssigned = false;
         if (_hasJoker) {
             cards.remove(_joker);
         }
@@ -44,7 +45,7 @@ public class StraightFlush extends Hand {
             return false;
         }
 
-        int highLowDiff = highCardValue - getLowCard().ValueIndex - cards.size() - 1;
+        int highLowDiff = highCardValue - getLowCard().ValueIndex - cards.size() + 1;
 
         if (_hasJoker) {
             if (highLowDiff == 0) {
@@ -58,16 +59,21 @@ public class StraightFlush extends Hand {
                 for (int i = 1; i < cards.size(); i++) {
                     if (highCardValue - cards.get(i).ValueIndex - i > 0) {
                         _joker.setJoker(cards.get(i).ValueIndex + 1, cardSuit);
+                        break;
                     }
                 }
             } else {
+                cards.add(_joker);
+                cards.sort(new CardSorter());
+
                 return false;
             }
 
             cards.add(_joker);
             cards.sort(new CardSorter());
+            highCardValue = getHighCard().ValueIndex;
         }
 
-        return highCardValue - getLowCard().ValueIndex - cards.size() == 1;
+        return highCardValue - getLowCard().ValueIndex - cards.size() == -1;
     }
 }
