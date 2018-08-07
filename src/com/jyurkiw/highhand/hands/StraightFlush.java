@@ -18,8 +18,11 @@ public class StraightFlush extends Hand {
      * @param handCode
      */
     public StraightFlush(String handCode) {
-        super(handCode);
-        handValue = 1;
+        super(handCode, 1);
+    }
+
+    public StraightFlush(String handCode, CardCounter cardCounter) {
+        super(handCode, 1, cardCounter);
     }
 
     @Override

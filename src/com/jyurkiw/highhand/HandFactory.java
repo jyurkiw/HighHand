@@ -18,35 +18,36 @@ public class HandFactory {
      */
     public static Hand parseHand(String handCode) {
         Hand hand;
+        CardCounter counter;
 
         hand = new FiveOfAKind(handCode);
         if (hand != null && hand.validate()) return hand;
 
-        hand = new StraightFlush(handCode);
+        hand = new StraightFlush(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new FourOfAKind(handCode);
+        hand = new FourOfAKind(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new FullHouse(handCode);
+        hand = new FullHouse(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new Flush(handCode);
+        hand = new Flush(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new Straight(handCode);
+        hand = new Straight(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new ThreeOfAKind(handCode);
+        hand = new ThreeOfAKind(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new TwoPair(handCode);
+        hand = new TwoPair(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new Pair(handCode);
+        hand = new Pair(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
-        hand = new HighCard(handCode);
+        hand = new HighCard(handCode, hand.cardCounter);
         if (hand.validate()) return hand;
 
         return null;

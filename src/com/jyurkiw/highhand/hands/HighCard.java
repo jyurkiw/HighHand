@@ -1,10 +1,15 @@
 package com.jyurkiw.highhand.hands;
 
+import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.Hand;
 
 public class HighCard extends Hand {
     public HighCard(String handCode) {
-        super(handCode);
+        super(handCode, 9);
+    }
+
+    public HighCard(String handCode, CardCounter cardCounter) {
+        super(handCode, 9, cardCounter);
     }
 
     /**

@@ -5,9 +5,11 @@ import com.jyurkiw.highhand.Hand;
 
 public class FullHouse extends Hand {
     public FullHouse(String handCode) {
-        super(handCode);
+        super(handCode, 3);
+    }
 
-        handValue = 3;
+    public FullHouse(String handCode, CardCounter cardCounter) {
+        super(handCode, 3, cardCounter);
     }
 
     /**

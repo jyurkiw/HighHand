@@ -2,6 +2,8 @@ package com.jyurkiw.test.highhand;
 
 import com.jyurkiw.highhand.Card;
 import com.jyurkiw.highhand.CardCounter;
+import com.jyurkiw.highhand.Hand;
+import com.jyurkiw.highhand.HandFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -67,5 +69,23 @@ class CardCounterTest {
 
         int actual = counter.suits.get(new Card("AH").SuitIndex);
         assertEquals(2, actual);
+    }
+
+    @Test
+    void getSingleCards() {
+        Hand hand = HandFactory.parseHand("AS:8H:3D:5C:4C");
+
+        CardCounter cc = CardCounter.count(hand.cards);
+
+        assertEquals(5, cc.getSingleValues().size());
+    }
+
+    @Test
+    void getSingleCardsOnePair() {
+        Hand hand = HandFactory.parseHand("AS:8H:3D:5C:AC");
+
+        CardCounter cc = CardCounter.count(hand.cards);
+
+        assertEquals(3, cc.getSingleValues().size());
     }
 }

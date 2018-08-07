@@ -5,7 +5,11 @@ import com.jyurkiw.highhand.Hand;
 
 public class ThreeOfAKind extends Hand {
     public ThreeOfAKind(String handCode) {
-        super(handCode);
+        super(handCode, 6);
+    }
+
+    public ThreeOfAKind(String handCode, CardCounter cardCounter) {
+        super(handCode, 6, cardCounter);
     }
 
     /**
@@ -23,7 +27,8 @@ public class ThreeOfAKind extends Hand {
             return -1;
         }
 
-        return cardCounter.backValues.get(3).compareTo(o.cardCounter.backValues.get(3));
+        int comp = cardCounter.backValues.get(3).compareTo(o.cardCounter.backValues.get(3));
+        return comp;
     }
 
     /**

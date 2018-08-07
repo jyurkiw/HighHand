@@ -1,6 +1,7 @@
 package com.jyurkiw.highhand.hands;
 
 import com.jyurkiw.highhand.Card;
+import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.Hand;
 
 import java.util.*;
@@ -9,8 +10,18 @@ public class TwoPair extends Hand {
     public HashSet<Integer> pairValues = new HashSet<>();
 
     public TwoPair(String handCode) {
-        super(handCode);
+        super(handCode, 7);
 
+        initPairValues();
+    }
+
+    public TwoPair(String handCode, CardCounter cardCounter) {
+        super(handCode, 7, cardCounter);
+
+        initPairValues();
+    }
+
+    private void initPairValues(){
         HashSet<Integer> valueSet = new HashSet<>();
         for (Card card : cards) {
             if (valueSet.contains(card.ValueIndex)) {

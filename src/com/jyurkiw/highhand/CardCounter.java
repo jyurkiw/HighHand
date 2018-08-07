@@ -2,6 +2,7 @@ package com.jyurkiw.highhand;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -48,5 +49,14 @@ public class CardCounter {
         }
 
         return counter;
+    }
+
+    public HashSet<Integer> getSingleValues() {
+        HashSet<Integer> data = new HashSet<>();
+        values.entrySet().stream()
+                .filter(e->e.getValue() == 1)
+                .mapToInt(e -> e.getKey())
+                .forEach(i->data.add(i));
+        return data;
     }
 }

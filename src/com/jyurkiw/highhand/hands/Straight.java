@@ -1,6 +1,7 @@
 package com.jyurkiw.highhand.hands;
 
 import com.jyurkiw.highhand.Card;
+import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.CardSorter;
 import com.jyurkiw.highhand.Hand;
 
@@ -17,8 +18,11 @@ public class Straight extends Hand {
      * @param handCode
      */
     public Straight(String handCode) {
-        super(handCode);
-        handValue = 1;
+        super(handCode, 1);
+    }
+
+    public Straight(String handCode, CardCounter cardCounter) {
+        super(handCode, 1, cardCounter);
     }
 
     @Override

@@ -6,9 +6,11 @@ import com.jyurkiw.highhand.Hand;
 
 public class Flush extends Hand {
     public Flush(String handCode) {
-        super(handCode);
+        super(handCode, 4);
+    }
 
-        handValue = 4;
+    public Flush(String handCode, CardCounter cardCounter) {
+        super(handCode, 4, cardCounter);
     }
 
     /**

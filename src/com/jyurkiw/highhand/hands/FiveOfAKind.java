@@ -15,8 +15,11 @@ public class FiveOfAKind extends Hand {
      * @param handCode
      */
     public FiveOfAKind(String handCode) {
-        super(handCode);
-        handValue = 0;
+        super(handCode, 0);
+    }
+
+    public FiveOfAKind(String handCode, CardCounter cardCounter) {
+        super(handCode, 0, cardCounter);
     }
 
     @Override

@@ -5,9 +5,11 @@ import com.jyurkiw.highhand.Hand;
 
 public class FourOfAKind extends Hand {
     public FourOfAKind(String handCode) {
-        super(handCode);
+        super(handCode, 2);
+    }
 
-        handValue = 2;
+    public FourOfAKind(String handCode, CardCounter cardCounter) {
+        super(handCode, 2, cardCounter);
     }
     /**
      * Used to compare two hands to check for a winner.

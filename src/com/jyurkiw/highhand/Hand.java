@@ -1,7 +1,6 @@
 package com.jyurkiw.highhand;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Base class for all hand types. The hand class receives a hand code and converts it to a collection of card objects.
@@ -21,7 +20,16 @@ public abstract class Hand implements Comparable<Hand> {
      *
      * @param handCode A valid hand code (ex: 4H:4S:4D:4C:2H)
      */
-    public Hand(String handCode) {
+    public Hand(String handCode, int handValue) {
+        init(handCode, handValue);
+    }
+
+    public Hand(String handCode, int handValue, CardCounter cardCounter) {
+        init(handCode, handValue);
+        this.cardCounter = cardCounter;
+    }
+
+    private void init(String handCode, int handValue) {
         cards = new ArrayList<>();
         for (String cardCode : handCode.split(":")) {
             Card card = new Card(cardCode);
@@ -35,7 +43,7 @@ public abstract class Hand implements Comparable<Hand> {
 
         cards.sort(new CardSorter());
 
-        handValue = 1000;
+        this.handValue = handValue;
     }
 
 

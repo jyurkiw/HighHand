@@ -1,10 +1,15 @@
 package com.jyurkiw.highhand.hands;
 
+import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.Hand;
 
 public class Pair extends Hand {
     public Pair(String handCode) {
-        super(handCode);
+        super(handCode, 8);
+    }
+
+    public Pair(String handCode, CardCounter cardCounter) {
+        super(handCode, 8, cardCounter);
     }
 
     /**
@@ -32,6 +37,10 @@ public class Pair extends Hand {
      */
     @Override
     public boolean validate() {
+        if (cardCounter == null) {
+            cardCounter = CardCounter.count(cards);
+        }
+
         return cardCounter.backValues.containsKey(2);
     }
 }
