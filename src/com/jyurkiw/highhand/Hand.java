@@ -14,6 +14,8 @@ public abstract class Hand implements Comparable<Hand> {
     protected boolean _hasJoker = false;
     protected Card _joker = null;
 
+    public CardCounter cardCounter = null;
+
     /**
      * Construct a hand from a passed hand code.
      *
@@ -51,7 +53,7 @@ public abstract class Hand implements Comparable<Hand> {
      *
      * @return True if the hand is valid.
      */
-    public abstract boolean isValid();
+    public abstract boolean validate();
 
     @Override
     public String toString() {

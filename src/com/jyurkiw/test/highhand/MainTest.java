@@ -2,8 +2,8 @@ package com.jyurkiw.test.highhand;
 
 import com.jyurkiw.highhand.Hand;
 import com.jyurkiw.highhand.HandFactory;
-import com.jyurkiw.highhand.com.jyurkiw.highhand.hands.FiveOfAKind;
-import com.jyurkiw.highhand.com.jyurkiw.highhand.hands.StraightFlush;
+import com.jyurkiw.highhand.hands.FiveOfAKind;
+import com.jyurkiw.highhand.hands.StraightFlush;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

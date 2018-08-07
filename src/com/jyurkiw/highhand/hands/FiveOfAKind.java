@@ -1,5 +1,6 @@
-package com.jyurkiw.highhand.com.jyurkiw.highhand.hands;
+package com.jyurkiw.highhand.hands;
 
+import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.Hand;
 
 /**
@@ -8,7 +9,7 @@ import com.jyurkiw.highhand.Hand;
 public class FiveOfAKind extends Hand {
     /**
      * Construct a five of a kind hand from the passed hand code.
-     * Hand must be checked by isValid to detect if it is actually
+     * Hand must be checked by validate to detect if it is actually
      * a five of a kind.
      *
      * @param handCode
@@ -36,12 +37,16 @@ public class FiveOfAKind extends Hand {
      * @return true if valid Five of a Kind.
      */
     @Override
-    public boolean isValid() {
-        for (int i = 1; i < 4; i++) {
-            if (cards.get(i).compareTo(cards.get(0)) != 0) {
-                return false;
-            }
+    public boolean validate() {
+        if (cardCounter == null) {
+            cardCounter = CardCounter.count(cards);
         }
-        return cards.get(4).isJoker();
+
+        if (cardCounter.values.containsValue(4) && _hasJoker) {
+            _joker.setJoker(getHighCard().ValueIndex, getHighCard().SuitIndex);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

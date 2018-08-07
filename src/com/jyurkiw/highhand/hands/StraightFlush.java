@@ -1,6 +1,7 @@
-package com.jyurkiw.highhand.com.jyurkiw.highhand.hands;
+package com.jyurkiw.highhand.hands;
 
 import com.jyurkiw.highhand.Card;
+import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.CardSorter;
 import com.jyurkiw.highhand.Hand;
 
@@ -11,7 +12,7 @@ public class StraightFlush extends Hand {
 
     /**
      * Construct a Straight Flush with the given handCode.
-     * Hand must be checked by isValid to detect if it is actually
+     * Hand must be checked by validate to detect if it is actually
      * a Straight Flush.
      *
      * @param handCode
@@ -39,7 +40,7 @@ public class StraightFlush extends Hand {
      * @return True if the hand is a valid Straight Flush and false otherwise.
      */
     @Override
-    public boolean isValid() {
+    public boolean validate() {
         int highCardValue = getHighCard().ValueIndex;
         int cardSuit = getHighCard().SuitIndex;
 

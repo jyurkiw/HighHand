@@ -1,7 +1,7 @@
 package com.jyurkiw.test.highhand;
 
-import com.jyurkiw.highhand.com.jyurkiw.highhand.hands.FiveOfAKind;
-import com.jyurkiw.highhand.com.jyurkiw.highhand.hands.StraightFlush;
+import com.jyurkiw.highhand.hands.FiveOfAKind;
+import com.jyurkiw.highhand.hands.StraightFlush;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,20 +43,20 @@ class FiveOfAKindTest {
     void testOutOfOrderJokerIsValid() {
         FiveOfAKind hand = new FiveOfAKind("10H:10S:JOKER:10C:10D");
 
-        assertTrue(hand.isValid());
+        assertTrue(hand.validate());
     }
 
     @Test
     void testValid() {
         FiveOfAKind hand = new FiveOfAKind("10H:10S:JOKER:10C:10D");
 
-        assertTrue(hand.isValid());
+        assertTrue(hand.validate());
     }
 
     @Test
     void testInvalid() {
         FiveOfAKind hand = new FiveOfAKind("10H:10S:JOKER:10C:8D");
 
-        assertFalse(hand.isValid());
+        assertFalse(hand.validate());
     }
 }

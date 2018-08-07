@@ -1,12 +1,11 @@
 package com.jyurkiw.highhand;
 
-import com.jyurkiw.highhand.com.jyurkiw.highhand.hands.FiveOfAKind;
-import com.jyurkiw.highhand.com.jyurkiw.highhand.hands.StraightFlush;
+import com.jyurkiw.highhand.hands.*;
 
 /**
  * A simple factory class that parses hand codes into hand objects.
  * Nothing fancy here. Just test hands in order from most valuable to least valuable and
- * return the first successful isValid call.
+ * return the first successful validate call.
  */
 public class HandFactory {
 
@@ -21,10 +20,35 @@ public class HandFactory {
         Hand hand;
 
         hand = new FiveOfAKind(handCode);
-        if (!hand.isValid()) {
-            hand = new StraightFlush(handCode);
-        }
+        if (hand != null && hand.validate()) return hand;
 
-        return hand;
+        hand = new StraightFlush(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new FourOfAKind(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new FullHouse(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new Flush(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new Straight(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new ThreeOfAKind(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new TwoPair(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new Pair(handCode);
+        if (hand.validate()) return hand;
+
+        hand = new HighCard(handCode);
+        if (hand.validate()) return hand;
+
+        return null;
     }
 }
