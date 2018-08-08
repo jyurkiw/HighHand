@@ -17,12 +17,12 @@ This program was written using IntelliJ Idea, and that is probably the easiest w
 
 * Navigate into the HighHand directory
 * Create a class directory under HighHand
-* Run: javac -d class src/com/jyurkiw/highhand/*.java src/com/jyurkiw/highhand/hands/*.java
+* Run: `javac -d class src/com/jyurkiw/highhand/*.java src/com/jyurkiw/highhand/hands/*.java`
 
 ## Running the Program from the Command Line:
 
 * Navigate into the HighHand directory
-* Run: java -cp class com.jyurkiw.highhand.Main [handCode #1] [handCode #2]
+* Run: `java -cp class com.jyurkiw.highhand.Main [handCode #1] [handCode #2]`
 
 ## Hand Codes
 
@@ -34,9 +34,9 @@ An example of a hand code would be...
 ## Compiling the Tests from the Command Line:
 
 * Navigate into the HighHand directory
-* run javac -d class -cp 'lib/junit-jupiter-api-5.3.0-M1.jar;lib/junit-platform-commons-1.3.0-M1.jar;class' src/com/jyurkiw/test/highhand/*.java
+* Run: `javac -d class -cp 'lib/junit-jupiter-api-5.3.0-M1.jar;lib/junit-platform-commons-1.3.0-M1.jar;class' src/com/jyurkiw/test/highhand/*.java`
 
 ## Running the Tests from the Command Line:
 
 * Navigate into the HighHand directory
-* Run: java -jar junit-platform-console-standalone-1.2.0.jar -cp class -p com.jyurkiw.test.highhand
+* Run: `java -jar junit-platform-console-standalone-1.2.0.jar -cp class -p com.jyurkiw.test.highhand`
