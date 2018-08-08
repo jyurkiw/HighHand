@@ -1,7 +1,7 @@
 # HighHand
-  EA Coding Test by Jeffrey Yurkiw
-  jyurkiw@yahoo.com
-  510-925-9623
+    EA Coding Test by Jeffrey Yurkiw
+    jyurkiw@yahoo.com
+    510-925-9623
 
 ## Poker Rules
 * Ace is high.
