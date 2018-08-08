@@ -59,11 +59,21 @@ public class TwoPair extends Hand {
         );
 
         if (maxComp == 0) {
-            return pairValues.stream().min(Comparator.comparing(Integer::valueOf)).get()
+            maxComp = pairValues.stream().min(Comparator.comparing(Integer::valueOf)).get()
                     .compareTo(other.pairValues.stream().min(Comparator.comparing(Integer::valueOf)).get()
             );
         }
-        return maxComp;
+
+        if (maxComp == 0) {
+            HashSet<Integer> singles = cardCounter.getSingleValues();
+            HashSet<Integer> oSingles = o.cardCounter.getSingleValues();
+
+            return singles.stream().max(Comparator.comparing(Integer::intValue)).get().compareTo(
+                    oSingles.stream().max(Comparator.comparing(Integer::intValue)).get()
+            );
+        } else {
+            return maxComp;
+        }
     }
 
     /**

@@ -132,9 +132,17 @@ class NOfAKindTest {
     }
 
     @Test
-    void pairInvalidTie() {
+    void pairValidTiePairHighCardWin() {
         Hand gt = HandFactory.parseHand("4S:4C:3S:2D:KH");
         Hand lt = HandFactory.parseHand("4D:4H:3D:2H:QD");
+
+        assertEquals(1, gt.compareTo(lt));
+    }
+
+    @Test
+    void twoPairValidTiePairHighCardWin() {
+        Hand gt = HandFactory.parseHand("4S:4C:3S:3D:KH");
+        Hand lt = HandFactory.parseHand("4D:4H:3D:3H:QD");
 
         assertEquals(1, gt.compareTo(lt));
     }

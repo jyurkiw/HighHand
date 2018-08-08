@@ -27,8 +27,7 @@ public class ThreeOfAKind extends Hand {
             return -1;
         }
 
-        int comp = cardCounter.backValues.get(3).compareTo(o.cardCounter.backValues.get(3));
-        return comp;
+        return cardCounter.backValues.get(3).compareTo(o.cardCounter.backValues.get(3));
     }
 
     /**

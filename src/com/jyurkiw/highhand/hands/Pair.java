@@ -3,6 +3,9 @@ package com.jyurkiw.highhand.hands;
 import com.jyurkiw.highhand.CardCounter;
 import com.jyurkiw.highhand.Hand;
 
+import java.util.Comparator;
+import java.util.HashSet;
+
 public class Pair extends Hand {
     public Pair(String handCode) {
         super(handCode, 8);
@@ -27,7 +30,17 @@ public class Pair extends Hand {
             return -1;
         }
 
-        return cardCounter.backValues.get(2).compareTo(o.cardCounter.backValues.get(2));
+        int comp = cardCounter.backValues.get(2).compareTo(o.cardCounter.backValues.get(2));
+        if (comp == 0) {
+            HashSet<Integer> singles = cardCounter.getSingleValues();
+            HashSet<Integer> oSingles = o.cardCounter.getSingleValues();
+
+            return singles.stream().max(Comparator.comparing(Integer::intValue)).get().compareTo(
+                    oSingles.stream().max(Comparator.comparing(Integer::intValue)).get()
+            );
+        } else {
+            return comp;
+        }
     }
 
     /**
